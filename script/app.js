@@ -1,5 +1,5 @@
 var colors = {
-  "INFORM RISK": ["#ffe6e3","#e85945", "#911200", '#730d00'],
+  "INFORM RISK": ["#ffe6e3", "#e85945", "#911200", '#730d00'],
   "HAZARD & EXPOSURE": ['#fff3e4', '#ffb148', '#ba6a00', '#945400'],
   "VULNERABILITY": ['#e7ecf3', '#789cd5', '#36578b', '#1b3c72'],
   "LACK OF COPING CAPACITY": ['#e6eae2', '#94ad70', '#506236', '#34461b']
