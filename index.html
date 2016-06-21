@@ -1,170 +1,67 @@
 <!DOCTYPE html>
-<!--[if IE 7]> <html lang="en_AU" class="ie ie7"> <![endif]-->
-<!--[if IE 8]> <html lang="en_AU" class="ie ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en_AU" class="ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en_AU"> <!--<![endif]-->
-  <head>
-    <!--[if lte ie 8]><script type="text/javascript" src="/fanstatic/vendor/:version:2016-03-07T09:28:21/html5.min.js"></script><![endif]-->
-<link rel="stylesheet" type="text/css" href="select/select2.css" />
-<link rel="stylesheet" type="text/css" href="select/onboarding.css" />
-<link rel="stylesheet" type="text/css" href="select/facets.css" />
-<link rel="stylesheet" type="text/css" href="select/login.css" />
-<link rel="stylesheet" type="text/css" href="select/multiple-select.css" />
-<link rel="stylesheet" type="text/css" href="select/datasets.css" />
-<link rel="stylesheet" type="text/css" href="select/c3.min.css" />
-<link rel="stylesheet" type="text/css" href="select/popup.css" />
-<link rel="stylesheet" type="text/css" href="select/explorer.css" />
-<link rel="stylesheet" type="text/css" href="select/popup-embed.css" />
-<link rel="stylesheet" type="text/css" href="select/page-new-basis.css" />
-<link rel="stylesheet" type="text/css" href="select/notification.css" />
-<link rel="stylesheet" type="text/css" href="select/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="select/header.css" />
-<link rel="stylesheet" type="text/css" href="select/activity-stream.css" />
-<link rel="stylesheet" type="text/css" href="select/hdx-icons.css" />
+<meta charset="utf-8">
 
+<head>
 
+  <script src="script/d3.v3.min.js"></script>
+  <script src="script/queue.v1.min.js"></script>
 
-    
-      <meta charset="utf-8" />
-      <meta name="generator" content="ckan 2.3" />
+  <script src='script/mapbox.js'></script>
+  <link href='css/mapbox.css' rel='stylesheet' />
 
-    <title>Test Inform</title>
+  <link href='css/style.css' rel='stylesheet' />
 
-    
+</head>
 
-    
-    
-    <link rel="stylesheet" type="text/css"
-          href="/css/generated/organization/inform/inform-1463768092645.css" />
+<body>
 
-  </head>
-
-  
-  <body data-site-root="/" data-locale-root="/" data-api-root="">
-
-    
-
-  
-      <div role="main">
-        <div id="content" class="container">
-          
-    
-            
-        
-
-            <div class="container mainContent">
-              <div class="hdx-wrapper wrapper no-nav">
-                
-                
-
-                <div class="row paddingRowHack contentBackground">
-                  <div class="col-xs-12 paddingLeftHack paddingRightHack">
-                    <div class="row">
-                      
-                      <div class=" col-xs-12 ">
-                        
-  <div class="primary">
-    
-
-    <div id="floatingLogoAnchor"><!-- anchor for logo --></div>
-    <div id="key-figures" class="row paddingRowHack whiteBackground">
-        
+  <div id="pageContainer" style="font-family: Helvetica, Arial, sans-serif;position:absolute;top:0;right:0;bottom:0;left:0;">
+<!--
+    <div id="header">
+      <a href="http://americanredcross.github.io"><img id="logo" src="logo.png"/></a>
+      <h1 id="siteTitle">
+        <span class="heavier">Country Risk Level Scores</span> from 2016 INFORM World Index
+      </h1>
     </div>
-    
-    <div class="row paddingRowHack whiteBackground">
-        
-
-        <div id="interactive-data" class="col-xs-12 paddingLeftHack paddingRightHack">
-            <div class="list-header crisis-list-header">
-                <span class="mL15 list-header-title">
-                    
-                    Interactive Data
-                </span>
-            </div>
-            <input type="hidden" id="visualization-data" value="{&#34;vis_url&#34;: &#34;https://data.hdx.rwlabs.org/visualization/inform/&#34;, &#34;data_link_url&#34;: &#34;https://data.hdx.rwlabs.org/dataset/country-risk-profiles-for-191-countries&#34;, &#34;title&#34;: &#34;Index for Risk Management&#34;, &#34;height&#34;: &#34;600px&#34;, &#34;width&#34;: &#34;100%&#34;, &#34;embedded_preview&#34;: &#34;/image/inform_embedded_preview.png&#34;, &#34;selector&#34;: &#34;&#34;, &#34;type&#34;: &#34;embedded&#34;}">
+-->
+    <div id="visualContainer" style="position:absolute; top:1em; bottom:0; width:100%">
+      <div id="svgContainer" style="position: absolute; top: 0; bottom: 0; left: 0; right: 50%;">
+        <div style="position: absolute; left: 0; right: 1em; height: 3em; width: 100%; text-align: center;">
+          <div id="countryEscapeButton"><img src="img/close-x.png" class="button" id="close-x" style="height: 100%" /></div>
+          <h1 id="countryTitle"></h1>
         </div>
-            
-            
-            
-                <div class="col-xs-12 paddingLeftHack paddingRightHack">
-                <div class="mTop20 mBottom20">
-                    <div class="pull-left visualization-title">
-                        Index for Risk Management
-                        
-                            <span> <a target="_blank" href="https://data.hdx.rwlabs.org/dataset/country-risk-profiles-for-191-countries">Data</a></span>
-                        
-                    </div>
-
-                    
-                </div>
-                <input type="hidden" id="visualization-data" value="{&#34;vis_url&#34;: &#34;https://data.hdx.rwlabs.org/visualization/inform/&#34;, &#34;data_link_url&#34;: &#34;https://data.hdx.rwlabs.org/dataset/country-risk-profiles-for-191-countries&#34;, &#34;title&#34;: &#34;Index for Risk Management&#34;, &#34;height&#34;: &#34;600px&#34;, &#34;width&#34;: &#34;100%&#34;, &#34;embedded_preview&#34;: &#34;/image/inform_embedded_preview.png&#34;, &#34;selector&#34;: &#34;&#34;, &#34;type&#34;: &#34;embedded&#34;}">
-            </div>
-            
-        <div style="display: none" id="wfp-viz-base-url">//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png</div>
-        <div id="mapbox-baselayer-url-div" style="display: none;">/mapbox-base-tiles/{z}/{x}/{y}.png</div>
-        <div id="mapbox-labelslayer-url-div" style="display: none;">/mapbox-layer-tiles/{z}/{x}/{y}.png</div>
-        <div style="display: none" id="wfp-viz-embed-url">//data.humdata.org</div>
-        <div style="display: none" id="wfp-viz-embed-datastore"></div>
-        
-
-        
-            <div class="col-xs-12 paddingLeftHack paddingRightHack mTop15">
-                <iframe src="https://data.hdx.rwlabs.org/visualization/inform/" frameborder="0" width="100%" height="600px"></iframe>
-            </div>
-        
-        
-        
-        
-    </div>
-    
-
-
-
-
-  </div>
-
-                      </div>
-                      
-                    </div>
-                  </div>
-                </div>
-
-                
-                
-
-              </div>
-            </div>
-
-          
+        <div id="svg" style="position: absolute; top: 3em; bottom: 3em; left: 0%; right: 0%;">
+          <h2 class="instructions">select a country on the map</h2>
+          <div id="metricScores" style="position: absolute; left: 30%; right: 30%; top: 26%; bottom: 0%; text-align: center;">
+            <p id="thisMetricParentParentParent" class="parentToMetric" style="font-size: 0.6em; color: #bbb;"></p>
+            <p id="thisMetricParentParent" class="parentToMetric" style="font-size: 0.7em; color: #999;"></p>
+            <p id="thisMetricParent" class="parentToMetric" style="font-size: 0.8em; color: #6d6e70;"></p>
+            <div id="back-button-container"><img src="img/back-arrow.png" class="button" id="back-button" style="height: 100%;" /></div>
+            <p id="thisMetric" style="font-size: 1.2em; color: #3e5255; padding-top: 0; margin-bottom: 0em; margin-top: 0em;"></p>
+            <p id="countryRankingLabel"  style="font-size: 0.85em; color: #567175; font-style: italic; margin-top: 0.5em; width: 70%; margin-left: 15%;"></p>
+          </div>
+        </div>
+        <div id="footer" style="position: absolute; bottom: 0; height: 3em; left: 0; right: 0; padding-right: 2.5em;">
+          <p class="link" style="font-size: 1em; float:left; margin: 0; padding-top:1em; padding-left:8em;">
+            <span style="text-decoration: none; color: #6d6e70;">Data visualization courtesy of </span>
+          </p>
+          <a href="http://americanredcross.github.io" target="_blank"><img id="logo" src="./img/logo.png"/></a>
         </div>
       </div>
-    
-        
-  
-      
+      <div id="mapContainer" style="position: absolute; bottom: 1em; top:0; left: 50%; right: 1em;">
+        <div id="legend" style="position: absolute; left: 7%; right: 7%; top: 0.5em; height: 2em; border-style: solid; border-width: 0.1em; border-color: #6d6e70;">
+          <div id="legendLowRisk" style="position: absolute; left: 0.3em; right: 50%; top: 0.5em; bottom: 0; text-align: left; color: #000;">0.0 - Low Risk</div>
+          <div id="legendHighRisk" style="position: absolute; left: 50%; right: 0.3em; top: 0.5em; bottom: 0; text-align: right; color: #fff;">High Risk - 10.0</div>
+        </div>
+        <div id="map" style="position: absolute; top: 5em; bottom: 0; width: 100%; border-style: solid; border-width: 0.1em; border-color: #6d6e70;"></div>
+      </div>
+    </div>
+  </div>
 
 
+  <script src='script/field-hierarchy.js'></script>
+  <script src='script/countries.js'></script>
+  <script src='script/rankings.js'></script>
+  <script src='script/app.js'></script>
 
- 
 </body>
-  
-  
-  
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
-    
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-
-    
-    
-    
-
-</html>
