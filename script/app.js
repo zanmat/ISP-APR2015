@@ -313,7 +313,7 @@ function ready(error, risk) {
 
         d3.select("#thisMetricParent").text(
           parentMetric(selectedMetric).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(selectedMetric)] * 10) / 10));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(selectedMetric)])));
 
         d3.select("#thisMetricParent").on("click", function() {
           selectedMetric = parentMetric(selectedMetric);
@@ -330,7 +330,7 @@ function ready(error, risk) {
       if (parentMetric(parentMetric(selectedMetric))) {
         d3.select("#thisMetricParentParent").text(
           parentMetric(parentMetric(selectedMetric)).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))] * 10) / 10));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))])));
 
         d3.select("#thisMetricParentParent").on("click", function() {
 
@@ -345,7 +345,7 @@ function ready(error, risk) {
       if (parentMetric(parentMetric(parentMetric(selectedMetric)))) {
         d3.select("#thisMetricParentParentParent").text(
           parentMetric(parentMetric(parentMetric(selectedMetric))).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))] * 10) / 10));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))])));
 
         d3.select("#thisMetricParentParentParent").on("click", function() {
 
