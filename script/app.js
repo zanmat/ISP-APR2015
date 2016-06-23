@@ -1,5 +1,5 @@
 var colors = {
-  "INFORM RISK": ["#ffe6e3", "#e85945", "#911200", '#730d00'],
+  "INFORM RISK": ["#ffe6e3","#e85945", "#911200", '#730d00'],
   "HAZARD & EXPOSURE": ['#fff3e4', '#ffb148', '#ba6a00', '#945400'],
   "VULNERABILITY": ['#e7ecf3', '#789cd5', '#36578b', '#1b3c72'],
   "LACK OF COPING CAPACITY": ['#e6eae2', '#94ad70', '#506236', '#34461b']
@@ -8,22 +8,22 @@ var colors = {
 var colorSchemes = {
 
   "INFORM RISK": d3.scale.linear()
-  		.domain([0, 4, 8, 10])
+  		.domain([0, 4, 8, 100])
   		.range([colors["INFORM RISK"][0], colors["INFORM RISK"][1], colors["INFORM RISK"][2], colors["INFORM RISK"][3]])
   		.interpolate(d3.interpolateLab),
 
   "HAZARD & EXPOSURE": d3.scale.linear()
-  		.domain([0, 4, 8, 10])
+  		.domain([0, 4, 8, 100])
   		.range([colors["HAZARD & EXPOSURE"][0], colors["HAZARD & EXPOSURE"][1], colors["HAZARD & EXPOSURE"][2], colors["HAZARD & EXPOSURE"][3]])
   		.interpolate(d3.interpolateLab),
 
   "VULNERABILITY": d3.scale.linear()
-  		.domain([0, 4, 8, 10])
+  		.domain([0, 4, 8, 100])
   		.range([colors["VULNERABILITY"][0], colors["VULNERABILITY"][1], colors["VULNERABILITY"][2], colors["VULNERABILITY"][3]])
   		.interpolate(d3.interpolateLab),
 
   "LACK OF COPING CAPACITY": d3.scale.linear()
-  		.domain([0, 4, 8, 10])
+  		.domain([0, 4, 8, 100])
   		.range([colors["LACK OF COPING CAPACITY"][0], colors["LACK OF COPING CAPACITY"][1], colors["LACK OF COPING CAPACITY"][2], colors["LACK OF COPING CAPACITY"][3]])
   		.interpolate(d3.interpolateLab)
 
@@ -65,6 +65,7 @@ var generateSVG = function() {
   tau = 2 * Math.PI,
   inner = height / 3.4,
   outer = height / 1.9;
+   
 
   // Create the SVG container, and apply a transform such that the origin is the center of the canvas
   svg = d3.select("#svg").append("svg")
@@ -290,7 +291,7 @@ function ready(error, risk) {
   // Populate metric text fields
   function displayMetricText() {
 
-      selectedMetricValue = risk[selectedCountryIndex][selectedMetric] === "null" ? "no estimation" : Math.round(risk[selectedCountryIndex][selectedMetric] * 10) / 10;
+      selectedMetricValue = risk[selectedCountryIndex][selectedMetric] === "null" ? "no estimation" : risk[selectedCountryIndex][selectedMetric];
 
       d3.select("#thisMetric").style("font-weight", "900").text(
         selectedMetric.toUpperCase() + ": "
@@ -405,8 +406,8 @@ function ready(error, risk) {
             });
 
       // Visible red arcs
-      var theValue = parseFloat(risk[selectedCountryIndex][visibleFields[i]]);
-      var theText = Math.round(risk[selectedCountryIndex][visibleFields[i]] * 10) / 10;
+      var theValue = risk[selectedCountryIndex][visibleFields[i]];
+      var theText = risk[selectedCountryIndex][visibleFields[i]];
       if (theText.toString().indexOf('.') == -1) theText += '.0';
 
       var color = {};
@@ -426,7 +427,7 @@ function ready(error, risk) {
       var newArc = svgArc(inner + 1 + (i * arcWidth),
                           inner - 1 + (i + 1) * arcWidth,
                           0.002 * tau,
-                          (theValue / 10) * tau)
+                          (theValue) * tau)
 
       visibleArcs.push(newArc);
 
