@@ -65,7 +65,6 @@ var generateSVG = function() {
   tau = 2 * Math.PI,
   inner = height / 3.4,
   outer = height / 1.9;
-   
 
   // Create the SVG container, and apply a transform such that the origin is the center of the canvas
   svg = d3.select("#svg").append("svg")
@@ -291,7 +290,7 @@ function ready(error, risk) {
   // Populate metric text fields
   function displayMetricText() {
 
-      selectedMetricValue = risk[selectedCountryIndex][selectedMetric] === "null" ? "no estimation" : risk[selectedCountryIndex][selectedMetric];
+      selectedMetricValue = risk[selectedCountryIndex][selectedMetric] === "null" ? "no estimation" : Math.round(risk[selectedCountryIndex][selectedMetric] * 10) / 10;
 
       d3.select("#thisMetric").style("font-weight", "900").text(
         selectedMetric.toUpperCase() + ": "
@@ -313,7 +312,7 @@ function ready(error, risk) {
 
         d3.select("#thisMetricParent").text(
           parentMetric(selectedMetric).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(selectedMetric)])));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(selectedMetric)] * 10) / 10));
 
         d3.select("#thisMetricParent").on("click", function() {
           selectedMetric = parentMetric(selectedMetric);
@@ -330,7 +329,7 @@ function ready(error, risk) {
       if (parentMetric(parentMetric(selectedMetric))) {
         d3.select("#thisMetricParentParent").text(
           parentMetric(parentMetric(selectedMetric)).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))])));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))] * 10) / 10));
 
         d3.select("#thisMetricParentParent").on("click", function() {
 
@@ -345,7 +344,7 @@ function ready(error, risk) {
       if (parentMetric(parentMetric(parentMetric(selectedMetric)))) {
         d3.select("#thisMetricParentParentParent").text(
           parentMetric(parentMetric(parentMetric(selectedMetric))).toUpperCase() + ": "
-        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))])));
+        ).append("span").style("font-weight", "bold").text(padDecimal(Math.round(risk[selectedCountryIndex][parentMetric(parentMetric(selectedMetric))] * 10) / 10));
 
         d3.select("#thisMetricParentParentParent").on("click", function() {
 
@@ -366,7 +365,7 @@ function ready(error, risk) {
 
   // Creates an svg arc that can be added to the svgContainer
   function svgArc(inner, outer, start, end) {
-    return d3.svg.arc().innerRadius(inner).outerRadius(outer).startAngle(start + tau / 2).endAngle(end + tau / 2);
+    return d3.svg.arc(100).innerRadius(inner).outerRadius(outer).startAngle(start + tau / 2).endAngle(end + tau / 2);
   }
 
   // Fill visibleArcs array with new arcs based on visibleFields array and selectedCountryIndex
@@ -406,8 +405,8 @@ function ready(error, risk) {
             });
 
       // Visible red arcs
-      var theValue = risk[selectedCountryIndex][visibleFields[i]];
-      var theText = risk[selectedCountryIndex][visibleFields[i]];
+      var theValue = parseFloat(risk[selectedCountryIndex][visibleFields[i]]);
+      var theText = Math.round(risk[selectedCountryIndex][visibleFields[i]] * 10) / 10;
       if (theText.toString().indexOf('.') == -1) theText += '.0';
 
       var color = {};
@@ -427,7 +426,7 @@ function ready(error, risk) {
       var newArc = svgArc(inner + 1 + (i * arcWidth),
                           inner - 1 + (i + 1) * arcWidth,
                           0.002 * tau,
-                          (theValue) * tau)
+                          (theValue / 100) * tau)
 
       visibleArcs.push(newArc);
 
