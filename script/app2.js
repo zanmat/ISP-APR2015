@@ -1,11 +1,11 @@
 var colors = {
-  "Total": ["#ffe6e3","#e85945", "#911200", '#730d00'],
-  "Nutrition": ['#fff3e4', '#ffb148', '#ba6a00', '#945400'],
-  "Health": ['#e7ecf3', '#789cd5', '#36578b', '#1b3c72'],
-  "Mental Health and Care Practices": ['#e6eae2', '#94ad70', '#506236', '#34461b'],
-"Food Security and Livelihoods":['#fee5d9', '#fcae91', '#fb6a4a', '#cb181d'],
-    "Water Sanitation and Hygiene":['#f2f0f7', '#cbc9e2', '#9e9ac8', '#6a51a3'],
-    "Disaster Risk Management":['#f1eef6', '#d7b5d8', '#df65b0', '#ce1256']
+  "Total": ["#FAD6D7","#F6B6B7", "#F07E7F", '#e41a1c'],
+  "Nutrition": ['#E7F4E6', '#C7E6C6', '#9BD299', '#4daf4a'],
+  "Health": ['#EFE3F0', '#E2CDE5', '#CBA7D1', '#984ea3'],
+  "Mental Health and Care Practices": ['#FFFFD4', '#FFFFB3', '#FFFF99', '#ffff33'],
+"Food Security and Livelihoods":['#F1E5DD', '#E6D0C2', '#D3AB94', '#a65628'],
+    "Water Sanitation and Hygiene":['#DFEBF4', '#C7DBEB', '#9BBFDC', '#377eb8'],
+    "Disaster Risk Management":['#FFEBD7', '#FFDBB7', '#FFBF80', '#ff7f00']
     
 }
 
@@ -141,10 +141,12 @@ function ready(error, risk) {
   // Add map
     
 
-  var map = L.map('map').setView([1, 1], 2);
+  var map = L.map('map')
+  .setView([1, 1], 2);
 
 L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
+maxZoom: 2    
 }).addTo(map);
 
   var choroplethLayer = L.geoJson().addTo(map);
