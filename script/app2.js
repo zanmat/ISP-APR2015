@@ -140,17 +140,12 @@ function ready(error, risk) {
 
   // Add map
     
-  L.mapbox.accessToken = 'pk.eyJ1IjoiYWFyb25kZW5uaXMiLCJhIjoiem5LLURoYyJ9.T3tswGTI5ve8_wE-a02cMw';
-  var map = L.mapbox.map('map', 'mapbox.high-contrast',
-                          { zoomControl: false,
-                            tileLayer: {
-                                continuousWorld: false,
-                                noWrap: true
-                            },
-                            maxZoom: 7,
-                            center: [0, 0],
-                            zoom: 2
-                          });
+
+  var map = L.map('map').setView([1, 1], 2);
+
+L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'
+}).addTo(map);
 
   var choroplethLayer = L.geoJson().addTo(map);
 
