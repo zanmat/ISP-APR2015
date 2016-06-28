@@ -139,6 +139,7 @@ function ready(error, risk) {
   /////////
 
   // Add map
+    
   L.mapbox.accessToken = 'pk.eyJ1IjoiYWFyb25kZW5uaXMiLCJhIjoiem5LLURoYyJ9.T3tswGTI5ve8_wE-a02cMw';
   var map = L.mapbox.map('map', 'mapbox.high-contrast',
                           { zoomControl: false,
@@ -543,7 +544,7 @@ function ready(error, risk) {
     d3.select('#countryTitle').text('');
     d3.select('#close-x').attr('class', 'hidden');
 
-    d3.select('#svg').append('h2').attr('class', 'instructions').text('select a country on the map');
+    d3.select('#svg').append('h2').attr('class', 'instructions').text('select a country on the map for information on Action Against Hunger beneficiaries');
 
     selectMetric("Total");
 
