@@ -142,11 +142,12 @@ function ready(error, risk) {
     
 
   var map = L.map('map')
-  .setView([1, 22], 2);
+  .setView([1, 30], 2);
 
 L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
-maxZoom: 2    
+maxZoom: 2,
+    minZoom: 1
 }).addTo(map);
 
   var choroplethLayer = L.geoJson().addTo(map);
